@@ -18,6 +18,7 @@ import com.aspose.diagram.Shape;
 import com.aspose.diagram.Txt;
 import com.aspose.diagram.TypeValue;
 import com.aspose.diagram.examples.Shapes.AddingNewShape;
+import com.aspose.diagram.examples.Shapes.ConnectVisioSubShapes;
 import com.aspose.diagram.examples.Utils;
 import com.oracle.xmlns.internal.webservices.jaxws_databinding.ObjectFactory;
 import java.io.File;
@@ -152,7 +153,7 @@ public class Main {
         
         
         */
-        
+        /*
         // initialize a new drawing
         Diagram diagram = new Diagram();
         // get page by index
@@ -202,6 +203,34 @@ public class Main {
         //page.connectShapesViaConnectorIndex(shape1.getID(), 7, shape4.getID(), 3, connecter3Id);
         // save drawing
         diagram.save(dataDir + "Drawing1_out.vsdx", SaveFileFormat.VSDX);
+*/
+        
+        
+        // ExStart:ConnectVisioSubShapes
+		// The path to the documents directory.
+		dataDir = Utils.getSharedDataDir(ConnectVisioSubShapes.class) + "Protection/";
+		// set sub shape ids
+		long shapeFromId = 2;
+		long shapeToId = 4;
+
+		// load diagram
+		Diagram diagram = new Diagram(dataDir + "Drawing1.vsdx");
+		// access a particular page
+		Page page = diagram.getPages().getPage("Page-3");
+
+		// initialize connector shape
+		Shape shape = new Shape();
+		shape.getLine().getEndArrow().setValue(4);
+		shape.getLine().getLineWeight().setValue(0.01388);
+
+		// add shape
+		long connecter1Id = diagram.addShape(shape, "Dynamic connector", page.getID());
+		// connect sub-shapes
+		page.connectShapesViaConnector(shapeFromId, ConnectionPointPlace.RIGHT, shapeToId, ConnectionPointPlace.LEFT,
+				connecter1Id);
+		// save Visio drawing
+		diagram.save(dataDir + "ConnectVisioSubShapes_Out.vsdx", SaveFileFormat.VSDX);
+		// ExEnd:ConnectVisioSubShapes
     }
 
 }

@@ -33,6 +33,7 @@ public class ConnectVisioSubShapes {
 		page.connectShapesViaConnector(shapeFromId, ConnectionPointPlace.RIGHT, shapeToId, ConnectionPointPlace.LEFT,
 				connecter1Id);
 		// save Visio drawing
+                dataDir = "C:\\Users\\Uddins2\\Documents\\aspose\\";
 		diagram.save(dataDir + "ConnectVisioSubShapes_Out.vsdx", SaveFileFormat.VSDX);
 		// ExEnd:ConnectVisioSubShapes
 	}

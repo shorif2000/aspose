@@ -6,6 +6,7 @@
 package ccp;
 
 import com.aspose.diagram.Connection;
+import com.aspose.diagram.ConnectionPointPlace;
 import com.aspose.diagram.Diagram;
 import com.aspose.diagram.Page;
 import com.aspose.diagram.SaveFileFormat;
@@ -25,7 +26,12 @@ import java.lang.reflect.Array;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
-
+import com.aspose.diagram.ConnectionPointPlace;
+import com.aspose.diagram.Diagram;
+import com.aspose.diagram.Page;
+import com.aspose.diagram.SaveFileFormat;
+import com.aspose.diagram.Shape;
+import com.aspose.diagram.examples.Utils;
 
 /**
  *
@@ -108,22 +114,39 @@ public class ReadXMLFile {
                     Connection connection3 = new Connection();
                     connection3.getX().getUfe().setF("Width*0.66");
                     connection3.getY().getUfe().setF("Height*0");
-                    shape1.getConnections().add(connection1);
-                    shape1.getConnections().add(connection3);
+                    //shape1.getConnections().add(connection1);
+                    //shape1.getConnections().add(connection3);
+                    //shape1.Connections.Add(connection1);
+                    //shape1.Connections.Add(connection3); 
 
                     // add connector shapes
                     Shape connector1 = new Shape();
                     //Shape connector2 = new Shape();
                     //Shape connector3 = new Shape();
-                    long connecter1Id = diagram.addShape(connector1, connectorMaster, 0);
+                    //long connecter1Id = diagram.addShape(connector1, connectorMaster, 0);
                     //long connecter2Id = diagram.addShape(connector2, connectorMaster, 0);
                     //long connecter3Id = diagram.addShape(connector3, connectorMaster, 0);
                     // connect shapes by index of conneecting points
                     System.out.println(page);
-                    //page.connectShapesViaConnectorIndex(shape1, xR1, shape2, xR2, connecter1Id);
-                    //page.connectShapesViaConnectorIndex(shape1.getID(), 1, shape3.getID(), 3, connecter2Id);
+                    System.out.println(shape1.getID());
+                    System.out.println(shape2.getID());
+                    //System.out.println(connecter1Id);
+                    /*
+                    long shapeFromId = 1;
+                    long shapeToId = 2;
+                    // initialize connector shape
+                    Shape shape = new Shape();
+                    shape.getLine().getEndArrow().setValue(4);
+                    shape.getLine().getLineWeight().setValue(0.01388);
+
+                    // add shape
+                    long connecter1Id = diagram.addShape(shape, "Connector", page.getID());
+*/
+                    //page.connectShapesViaConnectorIndex(shapeFromId, ConnectionPointPlace.RIGHT, shapeToId, ConnectionPointPlace.LEFT, connecter1Id);
+                    //page.connectShapesViaConnectorIndex(shape1.getID(), 1, shape2.getID(), 3, connecter1Id);
                     //page.connectShapesViaConnectorIndex(shape1.getID(), 7, shape4.getID(), 3, connecter3Id);
-                    
+                    //Connection connection1 = new Connection(); 
+                    //shape1.Connections.Add(connection1); 
                     y++;y++;
                 }
             } //end of for loop
