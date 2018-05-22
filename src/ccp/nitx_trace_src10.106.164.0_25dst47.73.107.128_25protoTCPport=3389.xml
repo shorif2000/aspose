@@ -86,27 +86,7 @@
                   <route gw="47.73.202.77@zone6" ip="47.73.107.128" mask="255.255.255.128" type="bgp" metric="0" pref="0"/>
                 </router>
               </device>
-            </routing-hop>
-            <routing-hop>
-              <device name="6" type="Router:IOSXR">
-                <interface-out>
-                  <interface name="Bundle-Ether30000.100" zone="zone6" ip="47.73.202.78" mask="255.255.255.252"/>
-                </interface-out>
-                <router name="zone6">
-                  <route gw="47.73.202.77" ip="47.73.107.128" mask="255.255.255.128" type="bgp" metric="0" pref="0"/>
-                </router>
-              </device>
-            </routing-hop>
-            <routing-hop>
-              <device name="7" type="Router:IOSXR">
-                <interface-in>
-                  <interface name="Bundle-Ether30000.100" zone="EITO_PROD" ip="47.73.202.77" mask="255.255.255.252"/>
-                </interface-in>
-                <router name="EITO_PROD">
-                  <route gw="92.79.192.198 [nolabel/21942]" ip="47.73.107.128" mask="255.255.255.128" type="bgp" metric="0" pref="0"/>
-                </router>
-              </device>
-            </routing-hop>           
+            </routing-hop>                     
           </traceroute>          
         </normal>        
       </record>
