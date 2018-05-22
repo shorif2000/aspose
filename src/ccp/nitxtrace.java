@@ -109,68 +109,62 @@ System.out.println(i);
         }
         System.out.println(shape_ID.length);
 
+        long shape_ID1;
+        long shape_ID2;
+        Shape shape1;
+        Shape shape2;
+        Connection[] connection1 = new Connection[8];
+        Connection[] connection2 = new Connection[8];
+        Connection[] connection3 = new Connection[8];
+        Connection[] connection4 = new Connection[8];
+        Shape[] connector = new Shape[8];
         for (i = 0; i < (shape_ID.length - 1); i++) {
-            System.out.println(i);
-            long shape_ID1 = shape_ID[i];
-            long shape_ID2 = shape_ID[(i + 1)];
+            System.out.println("shape1: " +i + " : shape2: "+(i+1));
+            shape_ID1 = shape_ID[i];
+            shape_ID2 = shape_ID[(i + 1)];
 
-            Shape shape1 = page.getShapes().getShape(shape_ID1);
-            Shape shape2 = page.getShapes().getShape(shape_ID2);
-
+            shape1 = page.getShapes().getShape(shape_ID1);
+            shape2 = page.getShapes().getShape(shape_ID2);
+System.out.println(shape1);
+System.out.println(shape2);
             // add two more connection points
-            Connection connection1 = new Connection();
-            connection1.setIX(0);
+            connection1[i] = new Connection();
+            connection1[i].setIX(0);
             //connection1.getX().getUfe().setF("Width*0.33");
 //                     connection1.getX().setValue(0.2984);
             //connection1.getY().getUfe().setF("Height*0");
 //                     connection1.getY().setValue(0);
-            Connection connection2 = new Connection();
+            connection2[i] = new Connection();
             //connection2.getX().getUfe().setF("Width*0.66");
 //                     connection3.getX().setValue(0.5968);
             //connection2.getY().getUfe().setF("Height*0");
 //                     connection3.getY().setValue(0);
-            connection2.setIX(1);
-            shape1.getConnections().add(connection1);
-            shape1.getConnections().add(connection2);
+            connection2[i].setIX(1);
+            shape1.getConnections().add(connection1[i]);
+            shape1.getConnections().add(connection2[i]);
 
-            Connection connection3 = new Connection();
+            connection3[i] = new Connection();
             //connection3.getX().getUfe().setF("Width*0.33");
 //                     connection4.getX().setValue(0.2984);
             //connection3.getY().getUfe().setF("Height*0");
 //                     connection4.getY().setValue(0);
-            connection3.setIX(0);
-            Connection connection4 = new Connection();
+            connection3[i].setIX(0);
+            connection4[i] = new Connection();
             //connection4.getX().getUfe().setF("Width*0.66");
 //                     connection3.getX().setValue(0.5968);
             //connection4.getY().getUfe().setF("Height*0");
 //                     connection3.getY().setValue(0);
-            connection4.setIX(1);
-            shape2.getConnections().add(connection3);
-            shape2.getConnections().add(connection4);
+            connection4[i].setIX(1);
+            shape2.getConnections().add(connection3[i]);
+            shape2.getConnections().add(connection4[i]);
 
-            /*
-            Connection connection5 = new Connection();
-            //connection5.getX().getUfe().setF("Width*0.33");
-//                     connection4.getX().setValue(0.2984);
-            //connection5.getY().getUfe().setF("Height*0");
-//                     connection4.getY().setValue(0);
-            connection5.setIX(0);
-            shape3.getConnections().add(connection5);
-*/
             // add connector shapes
-            Shape connector1 = new Shape();
-            diagram.addShape(connector1, connectorMaster, 0);
-            connector1.setConnectorsType(ConnectorsTypeValue.CURVED_LINES);
-            //Shape connector2 = new Shape();
-            //diagram.addShape(connector2, connectorMaster, 0);
-            //connector2.setConnectorsType(ConnectorsTypeValue.RIGHT_ANGLE);
+            connector[i] = new Shape();
+            diagram.addShape(connector[i], connectorMaster, 0);
+            connector[i].setConnectorsType(ConnectorsTypeValue.CURVED_LINES);
 
-            //System.out.println(page);
-            //ConnectionPointPlace  x = connection2;
-            //page.connectShapesViaConnector(shape3, xR3, shape1, xR1, shape2);
-            page.connectShapesViaConnector(shape1, ConnectionPointPlace.RIGHT, shape2, ConnectionPointPlace.LEFT, connector1);
-            //page.connectShapesViaConnectorIndex(shape1_ID, 1, shape2_ID, 0, connecter1Id);
-            //page.connectShapesViaConnectorIndex(shape2_ID, 1, shape3_ID, 0, connecter1Id);
+            page.connectShapesViaConnector(shape1, ConnectionPointPlace.RIGHT, shape2, ConnectionPointPlace.LEFT, connector[i]);
+
 
             y++;
             y++;
@@ -181,89 +175,7 @@ System.out.println(i);
         options.setAutoFitPageToDrawingContent(false);
         diagram.save(dataDir + "Drawing3_out.vsdx", options);
         
-        /*
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                Element eElement = (Element) nNode;
-//                     Flow currentflow = new Flow(eElement.getElementsByTagName("src").item(0).getTextContent(), eElement.getElementsByTagName("dst").item(0).getTextContent());
-//                     flows[temp] = currentflow;
-                //System.out.println("src : " + eElement.getElementsByTagName("src").item(0).getTextContent());
-                //System.out.println("dst : " + eElement.getElementsByTagName("dst").item(0).getTextContent());
-
-                // add shapes
-                long shape1_ID = diagram.addShape(xR1, y, router, pageNumber);
-                long shape2_ID = diagram.addShape(xR2, y, firewall, pageNumber);
-                long shape3_ID = diagram.addShape(xR3, y, router, pageNumber);
-
-                // get shapes by ID
-                Shape shape1 = page.getShapes().getShape(shape1_ID);
-                Shape shape2 = page.getShapes().getShape(shape2_ID);
-                Shape shape3 = page.getShapes().getShape(shape3_ID);
-
-                // add two more connection points
-                Connection connection1 = new Connection();
-                connection1.setIX(0);
-                //connection1.getX().getUfe().setF("Width*0.33");
-//                     connection1.getX().setValue(0.2984);
-                //connection1.getY().getUfe().setF("Height*0");
-//                     connection1.getY().setValue(0);
-                Connection connection2 = new Connection();
-                //connection2.getX().getUfe().setF("Width*0.66");
-//                     connection3.getX().setValue(0.5968);
-                //connection2.getY().getUfe().setF("Height*0");
-//                     connection3.getY().setValue(0);
-                connection2.setIX(1);
-                shape1.getConnections().add(connection1);
-                shape1.getConnections().add(connection2);
-
-                Connection connection3 = new Connection();
-                //connection3.getX().getUfe().setF("Width*0.33");
-//                     connection4.getX().setValue(0.2984);
-                //connection3.getY().getUfe().setF("Height*0");
-//                     connection4.getY().setValue(0);
-                connection3.setIX(0);
-                Connection connection4 = new Connection();
-                //connection4.getX().getUfe().setF("Width*0.66");
-//                     connection3.getX().setValue(0.5968);
-                //connection4.getY().getUfe().setF("Height*0");
-//                     connection3.getY().setValue(0);
-                connection4.setIX(1);
-                shape2.getConnections().add(connection3);
-                shape2.getConnections().add(connection4);
-                
-                Connection connection5 = new Connection();
-                //connection5.getX().getUfe().setF("Width*0.33");
-//                     connection4.getX().setValue(0.2984);
-                //connection5.getY().getUfe().setF("Height*0");
-//                     connection4.getY().setValue(0);
-                connection5.setIX(0);
-                shape3.getConnections().add(connection5);
-
-                // add connector shapes
-                Shape connector1 = new Shape();
-                diagram.addShape(connector1, connectorMaster, 0);
-                connector1.setConnectorsType(ConnectorsTypeValue.CURVED_LINES);
-                Shape connector2 = new Shape();
-                diagram.addShape(connector2, connectorMaster, 0);
-                connector2.setConnectorsType(ConnectorsTypeValue.RIGHT_ANGLE);
-
-                //System.out.println(page);
-                //ConnectionPointPlace  x = connection2;
-               //page.connectShapesViaConnector(shape3, xR3, shape1, xR1, shape2);
-                page.connectShapesViaConnector(shape1, ConnectionPointPlace.RIGHT, shape2, ConnectionPointPlace.LEFT, connector1);
-                page.connectShapesViaConnector(shape2, ConnectionPointPlace.RIGHT, shape3, ConnectionPointPlace.LEFT, connector2);
-                //page.connectShapesViaConnectorIndex(shape1_ID, 1, shape2_ID, 0, connecter1Id);
-                //page.connectShapesViaConnectorIndex(shape2_ID, 1, shape3_ID, 0, connecter1Id);
-
-                y++;
-                y++;
-            }
-        }
-         */
-        // save drawing
-        //DiagramSaveOptions options = new DiagramSaveOptions(SaveFileFormat.VSDX);
-        //options.setAutoFitPageToDrawingContent(false);
-        //diagram.save(dataDir + "Drawing3_out.vsdx", options);
+        
     }
 
 }
