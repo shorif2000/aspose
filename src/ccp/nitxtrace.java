@@ -125,6 +125,7 @@ System.out.println(i);
 
             shape1 = page.getShapes().getShape(shape_ID1);
             shape2 = page.getShapes().getShape(shape_ID2);
+            
 System.out.println(shape1);
 System.out.println(shape2);
             // add two more connection points
@@ -158,14 +159,15 @@ System.out.println(shape2);
             shape2.getConnections().add(connection3[i]);
             shape2.getConnections().add(connection4[i]);
 
-            // add connector shapes
+            // add connector sh^apes
             connector[i] = new Shape();
+            System.out.println("connector: " + connector[i]);
             diagram.addShape(connector[i], connectorMaster, 0);
             connector[i].setConnectorsType(ConnectorsTypeValue.CURVED_LINES);
 
             page.connectShapesViaConnector(shape1, ConnectionPointPlace.RIGHT, shape2, ConnectionPointPlace.LEFT, connector[i]);
 
-
+page.addComment(shape1, "Hello");
             y++;
             y++;
         }

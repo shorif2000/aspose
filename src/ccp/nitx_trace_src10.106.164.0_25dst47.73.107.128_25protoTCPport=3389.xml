@@ -26,10 +26,10 @@
             <routing-hop>
               <device name="1-2" type="Router:Nexus">
                 <interface-in>
-                  <interface name="3712" ="3712" zone="zone1" ip="10.106.164.3" mask="255.255.255.128"/>
+                  <interface name="3712" zone="zone1" ip="10.106.164.3" mask="255.255.255.128"/>
                 </interface-in>
                 <interface-out>
-                  <interface name="3910" ="3910" zone="zone1" ip="10.251.233.227" mask="255.255.255.240"/>
+                  <interface zone="zone1" ip="10.251.233.227" mask="255.255.255.240"/>
                 </interface-out>
                 <router name="zone1">
                   <route gw="10.251.233.226" ip="0.0.0.0" mask="0.0.0.0" type="ospf" metric="0" pref="0"/>
@@ -39,10 +39,10 @@
             <routing-hop>
               <device name="2" type="Router:Nexus">
                 <interface-in>
-                  <interface name="pc3910" ="3910" phys="Po51" zone="zone1" ip="10.251.233.226" mask="255.255.255.240"/>
+                  <interface name="pc3910"  phys="Po51" zone="zone1" ip="10.251.233.226" mask="255.255.255.240"/>
                 </interface-in>
                 <interface-out>
-                  <interface name="pc77" ="77" phys="Po51" zone="zone1" ip="10.157.46.129" mask="255.255.255.240"/>
+                  <interface name="pc77" phys="Po51" zone="zone1" ip="10.157.46.129" mask="255.255.255.240"/>
                 </interface-out>
                 <router name="zone1">
                   <route gw="10.157.46.131" ip="0.0.0.0" mask="0.0.0.0" type="ospf" metric="0" pref="0"/>
@@ -52,10 +52,10 @@
             <routing-hop>
               <device name="3" type="Firewall:SRX">
                 <interface-in>
-                  <interface name="reth0.77" ="-1" zone="zone2" ip="10.157.46.131" mask="255.255.255.240"/>
+                  <interface name="reth0.77" zone="zone2" ip="10.157.46.131" mask="255.255.255.240"/>
                 </interface-in>
                 <interface-out>
-                  <interface name="reth0.75" ="-1" zone="zone3" ip="10.157.46.100" mask="255.255.255.240"/>
+                  <interface name="reth0.75" zone="zone3" ip="10.157.46.100" mask="255.255.255.240"/>
                 </interface-out>
                 <router name="BOC">
                   <route gw="10.157.46.97" ip="0.0.0.0" mask="0.0.0.0" type="static" metric="5" pref="0"/>
@@ -65,12 +65,12 @@
             <routing-hop>
               <device name="4" type="Router:Nexus">
                 <interface-in>
-                  <interface name="pc75" ="75" phys="Po51" zone="zone4" ip="10.157.46.98" mask="255.255.255.240">
+                  <interface name="pc75" phys="Po51" zone="zone4" ip="10.157.46.98" mask="255.255.255.240">
                     <netobj type="network" ip="10.157.46.97" mask="255.255.255.240" name="*ha"/>
                   </interface>
                 </interface-in>
                 <interface-out>
-                  <interface name="pc656" ="656" phys="Po51" zone="zone4" ip="10.251.77.179" mask="255.255.255.240"/>
+                  <interface name="pc656" phys="Po51" zone="zone4" ip="10.251.77.179" mask="255.255.255.240"/>
                 </interface-out>
                 <router name="zone4">
                   <route gw="10.251.77.177" ip="47.73.107.128" mask="255.255.255.128" type="ospf" metric="0" pref="0"/>
@@ -80,7 +80,7 @@
             <routing-hop>
               <device name="5" type="Router:IOSXR">
                 <interface-in>
-                  <interface name="Bundle-Ether11.656" ="-1" zone="zone5" ip="10.251.77.177" mask="255.255.255.240"/>
+                  <interface name="Bundle-Ether11.656" zone="zone5" ip="10.251.77.177" mask="255.255.255.240"/>
                 </interface-in>
                 <router name="zone5">
                   <route gw="47.73.202.77@zone6" ip="47.73.107.128" mask="255.255.255.128" type="bgp" metric="0" pref="0"/>
@@ -90,7 +90,7 @@
             <routing-hop>
               <device name="6" type="Router:IOSXR">
                 <interface-out>
-                  <interface name="Bundle-Ether30000.100" ="-1" zone="zone6" ip="47.73.202.78" mask="255.255.255.252"/>
+                  <interface name="Bundle-Ether30000.100" zone="zone6" ip="47.73.202.78" mask="255.255.255.252"/>
                 </interface-out>
                 <router name="zone6">
                   <route gw="47.73.202.77" ip="47.73.107.128" mask="255.255.255.128" type="bgp" metric="0" pref="0"/>
@@ -100,7 +100,7 @@
             <routing-hop>
               <device name="7" type="Router:IOSXR">
                 <interface-in>
-                  <interface name="Bundle-Ether30000.100" ="-1" zone="EITO_PROD" ip="47.73.202.77" mask="255.255.255.252"/>
+                  <interface name="Bundle-Ether30000.100" zone="EITO_PROD" ip="47.73.202.77" mask="255.255.255.252"/>
                 </interface-in>
                 <router name="EITO_PROD">
                   <route gw="92.79.192.198 [nolabel/21942]" ip="47.73.107.128" mask="255.255.255.128" type="bgp" metric="0" pref="0"/>
@@ -110,7 +110,7 @@
             <routing-hop>
               <device name="8" type="Router:IOSXR">
                 <interface-out>
-                  <interface name="Bundle-Ether60.957" ="-1" zone="3209-vfgeitop001" ip="172.17.107.129" mask="255.255.255.252"/>
+                  <interface name="Bundle-Ether60.957" zone="3209-vfgeitop001" ip="172.17.107.129" mask="255.255.255.252"/>
                 </interface-out>
                 <router name="3209-vfgeitop001">
                   <route gw="172.17.107.130" ip="47.73.107.128" mask="255.255.255.128" type="bgp" metric="0" pref="0"/>
@@ -120,10 +120,10 @@
             <routing-hop>
               <device name="9" type="Router:IOS">
                 <interface-in>
-                  <interface name="Port-channel6.957" ="957" phys="Po6" zone="*global" ip="172.17.107.130" mask="255.255.255.252"/>
+                  <interface name="Port-channel6.957" phys="Po6" zone="*global" ip="172.17.107.130" mask="255.255.255.252"/>
                 </interface-in>
                 <interface-out>
-                  <interface name="71" ="71" zone="*global" ip="195.233.9.133" mask="255.255.255.0">
+                  <interface namezone="*global" ip="195.233.9.133" mask="255.255.255.0">
                     <netobj type="network" ip="195.233.9.132" mask="255.255.255.0" name="*ha"/>
                   </interface>
                 </interface-out>
@@ -135,12 +135,12 @@
             <routing-hop>
               <device name="10" type="Router:IOS">
                 <interface-in>
-                  <interface name="GigabitEthernet3/1.71" ="71" phys="Gi3/1" zone="extralan" ip="195.233.9.25" mask="255.255.255.0">
+                  <interface name="GigabitEthernet3/1.71" phys="Gi3/1" zone="extralan" ip="195.233.9.25" mask="255.255.255.0">
                     <netobj type="network" ip="195.233.9.24" mask="255.255.255.0" name="*ha"/>
                   </interface>
                 </interface-in>
                 <interface-out>
-                  <interface name="422" ="422" zone="extralan" ip="195.233.69.53" mask="255.255.255.248">
+                  <interface name="422" zone="extralan" ip="195.233.69.53" mask="255.255.255.248">
                     <netobj type="network" ip="195.233.69.52" mask="255.255.255.248" name="*ha"/>
                   </interface>
                 </interface-out>
