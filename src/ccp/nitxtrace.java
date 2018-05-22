@@ -165,7 +165,7 @@ public class nitxtrace {
         
         // save drawing
         DiagramSaveOptions options = new DiagramSaveOptions(SaveFileFormat.VSDX);        
-        options.setAutoFitPageToDrawingContent(false);
+        options.setAutoFitPageToDrawingContent(true);
         diagram.save(dataDir + "Drawing3_out.vsdx", options);
         
         
