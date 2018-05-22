@@ -108,38 +108,38 @@ public class fromaspose {
                 // add two more connection points
                 Connection connection1 = new Connection();
                 connection1.setIX(0);
-                connection1.getX().getUfe().setF("Width*0.33");
+                //connection1.getX().getUfe().setF("Width*0.33");
 //                     connection1.getX().setValue(0.2984);
-                connection1.getY().getUfe().setF("Height*0");
+                //connection1.getY().getUfe().setF("Height*0");
 //                     connection1.getY().setValue(0);
                 Connection connection2 = new Connection();
-                connection2.getX().getUfe().setF("Width*0.66");
+                //connection2.getX().getUfe().setF("Width*0.66");
 //                     connection3.getX().setValue(0.5968);
-                connection2.getY().getUfe().setF("Height*0");
+                //connection2.getY().getUfe().setF("Height*0");
 //                     connection3.getY().setValue(0);
                 connection2.setIX(1);
                 shape1.getConnections().add(connection1);
                 shape1.getConnections().add(connection2);
 
                 Connection connection3 = new Connection();
-                connection3.getX().getUfe().setF("Width*0.33");
+                //connection3.getX().getUfe().setF("Width*0.33");
 //                     connection4.getX().setValue(0.2984);
-                connection3.getY().getUfe().setF("Height*0");
+                //connection3.getY().getUfe().setF("Height*0");
 //                     connection4.getY().setValue(0);
                 connection3.setIX(0);
                 Connection connection4 = new Connection();
-                connection4.getX().getUfe().setF("Width*0.66");
+                //connection4.getX().getUfe().setF("Width*0.66");
 //                     connection3.getX().setValue(0.5968);
-                connection4.getY().getUfe().setF("Height*0");
+                //connection4.getY().getUfe().setF("Height*0");
 //                     connection3.getY().setValue(0);
                 connection4.setIX(1);
                 shape2.getConnections().add(connection3);
                 shape2.getConnections().add(connection4);
                 
                 Connection connection5 = new Connection();
-                connection5.getX().getUfe().setF("Width*0.33");
+                //connection5.getX().getUfe().setF("Width*0.33");
 //                     connection4.getX().setValue(0.2984);
-                connection5.getY().getUfe().setF("Height*0");
+                //connection5.getY().getUfe().setF("Height*0");
 //                     connection4.getY().setValue(0);
                 connection5.setIX(0);
                 shape3.getConnections().add(connection5);
