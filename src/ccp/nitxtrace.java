@@ -6,13 +6,7 @@
 package ccp;
 
 import com.aspose.diagram.Connection;
-import com.aspose.diagram.ConnectionPointPlace;
-import com.aspose.diagram.Diagram;
-import com.aspose.diagram.Page;
-import com.aspose.diagram.SaveFileFormat;
-import com.aspose.diagram.Shape;
 import com.aspose.diagram.Txt;
-import com.aspose.diagram.TypeValue;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
@@ -20,17 +14,12 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.DOMException;
-import org.xml.sax.SAXException;
 import com.aspose.diagram.ConnectionPointPlace;
 import com.aspose.diagram.ConnectorsTypeValue;
 import com.aspose.diagram.Diagram;
 import com.aspose.diagram.DiagramSaveOptions;
 import com.aspose.diagram.Page;
+import com.aspose.diagram.PrintPageOrientationValue;
 import com.aspose.diagram.SaveFileFormat;
 import com.aspose.diagram.Shape;
 
@@ -50,13 +39,7 @@ public class nitxtrace {
         //optional, but recommended
         //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
         doc.getDocumentElement().normalize();
-
-        System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
         NodeList nList = doc.getElementsByTagName("routing-hop");
-//             Flow[] flows;
-//             flows = new Flow[nList.getLength()];
-
         // initialize a new drawing
         Diagram diagram = new Diagram();
 
@@ -68,8 +51,6 @@ public class nitxtrace {
         String firewall = "Firewall";
         int pageNumber = 0;
         int xR1 = 1;
-        int xR2 = 4;
-        int xR3 = 7;
         double y = 1;
 
         // Set stencil file path
@@ -80,24 +61,29 @@ public class nitxtrace {
         diagram.addMaster(src, router);
         diagram.addMaster(src, firewall);
         diagram.addMaster(src, connectorMaster);
-        System.out.println(nList);
-        Long[] shape_ID = new Long[9];
+        
+        int device_count = nList.getLength();
+        Long[] shape_ID = new Long[device_count];
+        String[] device_name = new String[device_count];
+        String[] device_type = new String[device_count];
         int i = 0;
-        for (int temp = 0; temp < nList.getLength() - 1; temp++) {
-            System.out.println(nList.item(temp));
+        System.out.println(device_count);
+        for (int temp = 0; temp < (device_count); temp++) {
+            //System.out.println(nList.item(temp));
             Node childNode = nList.item(temp).getFirstChild();
 
             while (childNode.getNextSibling() != null) {
                 childNode = childNode.getNextSibling();
                 if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                    
                     Element childElement = (Element) childNode;
-                    String device_name = childElement.getAttribute("name");
-                    String device_type = childElement.getAttribute("type");
-                    System.out.println("DEVICE name:" + device_name + " type:" + device_type + " <br/>\n");
-System.out.println(i);
-                    if (device_type.startsWith("Router")) {
+                    device_name[i] = childElement.getAttribute("name");
+                    device_type[i] = childElement.getAttribute("type");
+//                    System.out.println("DEVICE name:" + device_name[i] + " type:" + device_type[i] + " <br/>\n");
+
+                    if (device_type[i].startsWith("Router")) {
                         shape_ID[i] = diagram.addShape(xR1, y, router, pageNumber);
-                    } else if (device_type.startsWith("Firewall")) {
+                    } else if (device_type[i].startsWith("Firewall")) {
                         shape_ID[i] = diagram.addShape(xR1, y, firewall, pageNumber);
                     }
                     xR1++;
@@ -113,11 +99,11 @@ System.out.println(i);
         long shape_ID2;
         Shape shape1;
         Shape shape2;
-        Connection[] connection1 = new Connection[8];
-        Connection[] connection2 = new Connection[8];
-        Connection[] connection3 = new Connection[8];
-        Connection[] connection4 = new Connection[8];
-        Shape[] connector = new Shape[8];
+        Connection[] connection1 = new Connection[device_count];
+        Connection[] connection2 = new Connection[device_count];
+        Connection[] connection3 = new Connection[device_count];
+        Connection[] connection4 = new Connection[device_count];
+        Shape[] connector = new Shape[device_count];
         for (i = 0; i < (shape_ID.length - 1); i++) {
             System.out.println("shape1: " +i + " : shape2: "+(i+1));
             shape_ID1 = shape_ID[i];
@@ -126,8 +112,8 @@ System.out.println(i);
             shape1 = page.getShapes().getShape(shape_ID1);
             shape2 = page.getShapes().getShape(shape_ID2);
             
-System.out.println(shape1);
-System.out.println(shape2);
+//System.out.println(shape1);
+//System.out.println(shape2);
             // add two more connection points
             connection1[i] = new Connection();
             connection1[i].setIX(0);
@@ -161,19 +147,24 @@ System.out.println(shape2);
 
             // add connector sh^apes
             connector[i] = new Shape();
-            System.out.println("connector: " + connector[i]);
+            //System.out.println("connector: " + connector[i]);
             diagram.addShape(connector[i], connectorMaster, 0);
             connector[i].setConnectorsType(ConnectorsTypeValue.CURVED_LINES);
-
+            shape1.getText().getValue().add(new Txt(device_name[i]));
+            System.out.println(i + " : " + (shape_ID.length-2));
+            if(i == (shape_ID.length-2)){
+                shape2.getText().getValue().add(new Txt(device_name[i+1]));
+            }
             page.connectShapesViaConnector(shape1, ConnectionPointPlace.RIGHT, shape2, ConnectionPointPlace.LEFT, connector[i]);
 
-page.addComment(shape1, "Hello");
             y++;
             y++;
         }
+        // page orientation
+        page.getPageSheet().getPrintProps().getPrintPageOrientation().setValue(PrintPageOrientationValue.LANDSCAPE);
         
         // save drawing
-        DiagramSaveOptions options = new DiagramSaveOptions(SaveFileFormat.VSDX);
+        DiagramSaveOptions options = new DiagramSaveOptions(SaveFileFormat.VSDX);        
         options.setAutoFitPageToDrawingContent(false);
         diagram.save(dataDir + "Drawing3_out.vsdx", options);
         

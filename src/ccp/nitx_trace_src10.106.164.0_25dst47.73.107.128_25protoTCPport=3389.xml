@@ -106,49 +106,7 @@
                   <route gw="92.79.192.198 [nolabel/21942]" ip="47.73.107.128" mask="255.255.255.128" type="bgp" metric="0" pref="0"/>
                 </router>
               </device>
-            </routing-hop>
-            <routing-hop>
-              <device name="8" type="Router:IOSXR">
-                <interface-out>
-                  <interface name="Bundle-Ether60.957" zone="3209-vfgeitop001" ip="172.17.107.129" mask="255.255.255.252"/>
-                </interface-out>
-                <router name="3209-vfgeitop001">
-                  <route gw="172.17.107.130" ip="47.73.107.128" mask="255.255.255.128" type="bgp" metric="0" pref="0"/>
-                </router>
-              </device>
-            </routing-hop>
-            <routing-hop>
-              <device name="9" type="Router:IOS">
-                <interface-in>
-                  <interface name="Port-channel6.957" phys="Po6" zone="*global" ip="172.17.107.130" mask="255.255.255.252"/>
-                </interface-in>
-                <interface-out>
-                  <interface namezone="*global" ip="195.233.9.133" mask="255.255.255.0">
-                    <netobj type="network" ip="195.233.9.132" mask="255.255.255.0" name="*ha"/>
-                  </interface>
-                </interface-out>
-                <router name="*grt">
-                  <route gw="195.233.9.24" ip="47.73.107.128" mask="255.255.255.128" type="static" metric="0" pref="0"/>
-                </router>
-              </device>
-            </routing-hop>
-            <routing-hop>
-              <device name="10" type="Router:IOS">
-                <interface-in>
-                  <interface name="GigabitEthernet3/1.71" phys="Gi3/1" zone="extralan" ip="195.233.9.25" mask="255.255.255.0">
-                    <netobj type="network" ip="195.233.9.24" mask="255.255.255.0" name="*ha"/>
-                  </interface>
-                </interface-in>
-                <interface-out>
-                  <interface name="422" zone="extralan" ip="195.233.69.53" mask="255.255.255.248">
-                    <netobj type="network" ip="195.233.69.52" mask="255.255.255.248" name="*ha"/>
-                  </interface>
-                </interface-out>
-                <router name="extralan">
-                  <route gw="195.233.69.49" ip="47.73.107.128" mask="255.255.255.128" type="static" metric="0" pref="0"/>
-                </router>
-              </device>
-            </routing-hop>            
+            </routing-hop>           
           </traceroute>          
         </normal>        
       </record>
