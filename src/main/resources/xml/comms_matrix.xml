@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/xslt/user_commsmatrix.xsl"?>
+<response>
+  <header>
+    <api_status>1</api_status>
+    <api_response>success</api_response>
+    <http_status>200</http_status>
+    <http_response>ok</http_response>
+    <format>xml</format>
+    <error>false</error>
+    <quiet>false</quiet>
+    <metadata>
+      <routing_analysis>on</routing_analysis>
+      <service_id>3</service_id>
+      <service>* Ad-hoc Submission</service>
+      <comms_matrix_id>24</comms_matrix_id>
+      <filename>QA test v1.xls</filename>
+      <visible_lines>6</visible_lines>
+      <security_flows>6</security_flows>
+      <error_flows>0</error_flows>
+      <security_permit>2</security_permit>
+      <security_deny>0</security_deny>
+      <security_exemption>4</security_exemption>
+      <security_prevention>0</security_prevention>
+      <routing_permit>1</routing_permit>
+      <routing_deny>4</routing_deny>
+      <routing_exemption>0</routing_exemption>
+      <routing_prevention>0</routing_prevention>
+      <frozen>1</frozen>
+      <download_1>approved</download_1>
+      <download_2>requires_analysis</download_2>
+      <download_3>all</download_3>
+      <link></link>
+    </metadata>
+    <aggregate>true</aggregate>
+    <techops>true</techops>
+    <servicedesign>true</servicedesign>
+    <ccpProjectUser>true</ccpProjectUser>
+    <user>UddinS2</user>
+    <title>QA test v1.xls</title>
+    <description>Comms matrix analysis results</description>
+    <nav>
+    </nav>
+    <version>13</version>
+    <server>1</server>
+    <timestamp>1509701960</timestamp>
+  </header>
+  <body>
+    <recordset>
+      <flow>
+        <id>159</id>
+        <status>
+          <option>To implement</option>
+          <url>159</url>
+        </status>
+        <cmline>9</cmline>
+        <src>10.0.0.1</src>
+        <src_desc>server1</src_desc>
+        <src_net>10.0.0.1/24</src_net>        
+        <dst>192.168.1.1</dst>
+        <dst_net>192.168.1.1/32</dst_net>
+        <protocol>TCP</protocol>
+        <ports>636</ports>
+        <remarks>none</remarks>
+        <environment>TEST</environment>
+        <spa>Exemption</spa>
+        <spn>Exemption  - Approved by x until Forever</spn>
+        <rpa>Requires Analysis</rpa>
+        <rpn>Flow requires further analysis to verify</rpn>
+        <fpa>Permit</fpa>
+        <fpn>Flow is permitted using an acceptable port</fpn>
+        <remedy_inc></remedy_inc>
+      </flow>
+      <flow>
+        <id>160</id>
+        <status>
+          <option>To implement</option>
+          <url>160</url>
+        </status>
+        <cmline>10</cmline>
+        <src>10.1.0.1</src>
+        <src_desc>server2</src_desc>
+        <src_net>10.1.0.0/24</src_net>
+        <dst>192.168.1.1</dst>
+        <dst_net>192.168.1.1/32</dst_net>
+        <protocol>TCP</protocol>
+        <ports>389</ports>
+        <remarks>none</remarks>
+        <environment>PROD</environment>
+        <spa>Exemption</spa>
+        <spn>Exemption  - Approved by x until Forever </spn>
+        <rpa>Requires Analysis</rpa>
+        <rpn>Flow requires further analysis to verify</rpn>
+        <fpa>Permit</fpa>
+        <fpn>Flow is permitted using an acceptable port</fpn>
+        <remedy_inc></remedy_inc>
+      </flow>
+      <flow>
+        <id>161</id>
+        <status>
+          <option>To implement</option>
+          <url>161</url>
+        </status>
+        <cmline>11</cmline>
+        <src>10.3.0.1</src>
+        <src_desc>server3</src_desc>
+        <src_net>10.1.0.0/24</src_net>
+        <dst>192.168.1.1</dst>
+        <dst_net>192.168.1.1/32</dst_net>
+        <protocol>TCP</protocol>
+        <ports>636</ports>
+        <remarks>none</remarks>
+        <environment>PRODSUPP</environment>
+        <spa>Exemption</spa>
+        <spn>Exemption - Approved by x until Forever </spn>
+        <rpa>Requires Analysis</rpa>
+        <rpn>Flow requires further analysis to verify</rpn>
+        <fpa>Permit</fpa>
+        <fpn>Flow is permitted using an acceptable port</fpn>
+        <remedy_inc></remedy_inc>
+      </flow>
+      <flow>
+        <id>162</id>
+        <status>
+          <option>To implement</option>
+          <url>162</url>
+        </status>
+        <cmline>12</cmline>
+        <src>10.78.0.1</src>
+        <src_desc>server4</src_desc>
+        <src_net>10.1.0.0/24</src_net>
+        <dst>192.168.1.1</dst>
+        <dst_net>192.168.1.1/32</dst_net>
+        <protocol>TCP</protocol>
+        <ports>389</ports>
+        <remarks>none</remarks>
+        <environment>WORKER</environment>
+        <spa>Exemption</spa>
+        <spn>Exemption - Approved by x until Forever </spn>
+        <rpa>Requires Analysis</rpa>
+        <rpn>Flow requires further analysis to verify</rpn>
+        <fpa>Permit</fpa>
+        <fpn>Flow is permitted using an acceptable port</fpn>
+        <remedy_inc></remedy_inc>
+      </flow>
+      <flow>
+        <id>163</id>
+        <status>
+          <option>To implement</option>
+          <url>163</url>
+        </status>
+        <cmline>13</cmline>
+        <src>10.1.0.1</src>
+        <src_desc>server2</src_desc>
+        <src_net>10.1.0.0/24</src_net>
+        <dst>10.3.0.1</dst>
+        <dst_desc>server3</dst_desc>
+        <dst_net>10.1.0.0/24</dst_net>
+        <protocol>TCP</protocol>
+        <ports>22</ports>
+        <remarks>none</remarks>
+        <environment>PROD</environment>
+        <spa>Permit</spa>
+        <spn>Flow is permitted within the same security zone</spn>
+        <rpa>Permit</rpa>
+        <rpn>Flow is permitted within the same routing domain</rpn>
+        <fpa>Permit</fpa>
+        <fpn>Flow is permitted using an acceptable port</fpn>
+        <remedy_inc></remedy_inc>
+      </flow>
+      <flow>
+        <id>164</id>
+        <status>
+          <option>To implement</option>
+          <url>164</url>
+        </status>
+        <cmline>14</cmline>
+        <src>10.1.0.1</src>
+        <src_desc>server2</src_desc>
+        <src_net>10.1.0.0/24</src_net>
+        <dst>192.168.5.1</dst>
+        <dst_desc>server5</dst_desc>
+        <dst_net>192.168.5.0/25</dst_net>
+        <protocol>TCP</protocol>
+        <ports>9605</ports>
+        <remarks>none</remarks>
+        <environment>PROD</environment>
+        <spa>Permit</spa>
+        <spn>Flow is permitted by the security zoning policy</spn>
+        <rpa>Routing Ok</rpa>
+        <rpn> Updated by x on 05-OCT-86 03.47.46.698496 PM</rpn>
+        <fpa>Permit</fpa>
+        <fpn>Flow is permitted using an acceptable port</fpn>
+        <remedy_inc></remedy_inc>
+      </flow>
+      <routing_flow_summary>
+        <id>1</id>
+        <cm_lines>9</cm_lines>
+        <routing_analysis>
+          <url>?src=10.0.0.1&amp;dst=192.168.1.1</url>
+          <row>9</row>
+        </routing_analysis>
+        <src_net>10.0.0.1/24</src_net>
+        <dst_net>192.168.1.1/32</dst_net>
+        <rpa>Requires Analysis</rpa>
+        <rpn>Flow requires further analysis </rpn>
+      </routing_flow_summary>
+      <routing_flow_summary>
+        <id>2</id>
+        <cm_lines>13</cm_lines>
+        <routing_analysis>
+          <url>?src=10.1.0.1&amp;dst=10.3.0.1</url>
+          <row>13</row>
+        </routing_analysis>
+        <src_net>10.1.0.0/24</src_net>
+        <dst_net>10.1.0.0/24</dst_net>
+        <rpa>Permit</rpa>
+        <rpn>Flow is permitted within </rpn>
+        <status></status>
+        <notes></notes>
+        <updated_by></updated_by>
+      </routing_flow_summary>
+      <routing_flow_summary>
+        <id>3</id>
+        <cm_lines>10,11,12</cm_lines>
+        <routing_analysis>
+          <url>?src=10.1.0.1&amp;dst=192.168.1.1</url>
+          <row>10</row>
+        </routing_analysis>
+        <routing_analysis>
+          <url>?src=10.3.0.1&amp;dst=192.168.1.1</url>
+          <row>11</row>
+        </routing_analysis>
+        <routing_analysis>
+          <url>?src=10.78.0.1&amp;dst=192.168.1.1</url>
+          <row>12</row>
+        </routing_analysis>
+        <src_net>10.1.0.0/24</src_net>
+        <dst_net>192.168.1.1/32</dst_net>
+        <rpa>Requires Analysis</rpa>
+        <rpn>Flow requires further analysis </rpn>
+      </routing_flow_summary>
+      <routing_flow_summary>
+        <id>4</id>
+        <cm_lines>14</cm_lines>
+        <routing_analysis>
+          <url>?src=10.1.0.1&amp;dst=192.168.5.1</url>
+          <row>14</row>
+        </routing_analysis>
+        <src_net>10.1.0.0/24</src_net>
+        <dst_net>192.168.5.0/25</dst_net>
+        <rpa>Routing Ok</rpa>
+        <rpn> Updated by x </rpn>
+        <status></status>
+        <notes></notes>
+        <updated_by></updated_by>
+      </routing_flow_summary>
+    </recordset>
+  </body>
+</response>
