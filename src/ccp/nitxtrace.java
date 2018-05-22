@@ -38,7 +38,7 @@ import com.aspose.diagram.Shape;
  *
  * @author UddinS2
  */
-public class fromaspose {
+public class nitxtrace {
 
     public static void main(String argv[]) throws Exception {
         String dataDir = "C:\\Users\\Uddins2\\Documents\\aspose\\";
@@ -80,13 +80,108 @@ public class fromaspose {
         diagram.addMaster(src, router);
         diagram.addMaster(src, firewall);
         diagram.addMaster(src, connectorMaster);
-
+        System.out.println(nList);
+        Long[] shape_ID = new Long[9];
+        int i = 0;
         for (int temp = 0; temp < nList.getLength() - 1; temp++) {
+            System.out.println(nList.item(temp));
+            Node childNode = nList.item(temp).getFirstChild();
 
-            Node nNode = nList.item(temp);
+            while (childNode.getNextSibling() != null) {
+                childNode = childNode.getNextSibling();
+                if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element childElement = (Element) childNode;
+                    String device_name = childElement.getAttribute("name");
+                    String device_type = childElement.getAttribute("type");
+                    System.out.println("DEVICE name:" + device_name + " type:" + device_type + " <br/>\n");
+System.out.println(i);
+                    if (device_type.startsWith("Router")) {
+                        shape_ID[i] = diagram.addShape(xR1, y, router, pageNumber);
+                    } else if (device_type.startsWith("Firewall")) {
+                        shape_ID[i] = diagram.addShape(xR1, y, firewall, pageNumber);
+                    }
+                    xR1++;
+                    xR1++;
+                    i++;
+                }
+                
+            }
+        }
+        System.out.println(shape_ID.length);
 
-            System.out.println("\nCurrent Element :" + nNode.getNodeName());
+        for (i = 0; i < (shape_ID.length - 1); i++) {
+            System.out.println(i);
+            long shape_ID1 = shape_ID[i];
+            long shape_ID2 = shape_ID[(i + 1)];
 
+            Shape shape1 = page.getShapes().getShape(shape_ID1);
+            Shape shape2 = page.getShapes().getShape(shape_ID2);
+
+            // add two more connection points
+            Connection connection1 = new Connection();
+            connection1.setIX(0);
+            //connection1.getX().getUfe().setF("Width*0.33");
+//                     connection1.getX().setValue(0.2984);
+            //connection1.getY().getUfe().setF("Height*0");
+//                     connection1.getY().setValue(0);
+            Connection connection2 = new Connection();
+            //connection2.getX().getUfe().setF("Width*0.66");
+//                     connection3.getX().setValue(0.5968);
+            //connection2.getY().getUfe().setF("Height*0");
+//                     connection3.getY().setValue(0);
+            connection2.setIX(1);
+            shape1.getConnections().add(connection1);
+            shape1.getConnections().add(connection2);
+
+            Connection connection3 = new Connection();
+            //connection3.getX().getUfe().setF("Width*0.33");
+//                     connection4.getX().setValue(0.2984);
+            //connection3.getY().getUfe().setF("Height*0");
+//                     connection4.getY().setValue(0);
+            connection3.setIX(0);
+            Connection connection4 = new Connection();
+            //connection4.getX().getUfe().setF("Width*0.66");
+//                     connection3.getX().setValue(0.5968);
+            //connection4.getY().getUfe().setF("Height*0");
+//                     connection3.getY().setValue(0);
+            connection4.setIX(1);
+            shape2.getConnections().add(connection3);
+            shape2.getConnections().add(connection4);
+
+            /*
+            Connection connection5 = new Connection();
+            //connection5.getX().getUfe().setF("Width*0.33");
+//                     connection4.getX().setValue(0.2984);
+            //connection5.getY().getUfe().setF("Height*0");
+//                     connection4.getY().setValue(0);
+            connection5.setIX(0);
+            shape3.getConnections().add(connection5);
+*/
+            // add connector shapes
+            Shape connector1 = new Shape();
+            diagram.addShape(connector1, connectorMaster, 0);
+            connector1.setConnectorsType(ConnectorsTypeValue.CURVED_LINES);
+            //Shape connector2 = new Shape();
+            //diagram.addShape(connector2, connectorMaster, 0);
+            //connector2.setConnectorsType(ConnectorsTypeValue.RIGHT_ANGLE);
+
+            //System.out.println(page);
+            //ConnectionPointPlace  x = connection2;
+            //page.connectShapesViaConnector(shape3, xR3, shape1, xR1, shape2);
+            page.connectShapesViaConnector(shape1, ConnectionPointPlace.RIGHT, shape2, ConnectionPointPlace.LEFT, connector1);
+            //page.connectShapesViaConnectorIndex(shape1_ID, 1, shape2_ID, 0, connecter1Id);
+            //page.connectShapesViaConnectorIndex(shape2_ID, 1, shape3_ID, 0, connecter1Id);
+
+            y++;
+            y++;
+        }
+        
+        // save drawing
+        DiagramSaveOptions options = new DiagramSaveOptions(SaveFileFormat.VSDX);
+        options.setAutoFitPageToDrawingContent(false);
+        diagram.save(dataDir + "Drawing3_out.vsdx", options);
+        
+        /*
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                 Element eElement = (Element) nNode;
@@ -164,11 +259,11 @@ public class fromaspose {
                 y++;
             }
         }
-        
+         */
         // save drawing
-        DiagramSaveOptions options = new DiagramSaveOptions(SaveFileFormat.VSDX);
-        options.setAutoFitPageToDrawingContent(false);
-        diagram.save(dataDir + "Drawing3_out.vsdx", options);
+        //DiagramSaveOptions options = new DiagramSaveOptions(SaveFileFormat.VSDX);
+        //options.setAutoFitPageToDrawingContent(false);
+        //diagram.save(dataDir + "Drawing3_out.vsdx", options);
     }
 
 }
