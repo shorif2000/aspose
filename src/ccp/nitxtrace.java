@@ -104,13 +104,18 @@ public class nitxtrace {
         Connection[] connection3 = new Connection[device_count];
         Connection[] connection4 = new Connection[device_count];
         Shape[] connector = new Shape[device_count];
-        for (i = 0; i < (shape_ID.length - 1); i++) {
+        for (i = 0; i < (device_count - 1); i++) {
             System.out.println("shape1: " +i + " : shape2: "+(i+1));
             shape_ID1 = shape_ID[i];
             shape_ID2 = shape_ID[(i + 1)];
 
             shape1 = page.getShapes().getShape(shape_ID1);
             shape2 = page.getShapes().getShape(shape_ID2);
+            // alter the size of Shape
+            shape1.setWidth(0.5 * shape1.getXForm().getWidth().getValue());
+            shape1.setHeight(0.5 * shape1.getXForm().getHeight().getValue());
+            shape2.setWidth(0.5 * shape2.getXForm().getWidth().getValue());
+            shape2.setHeight(0.5 * shape2.getXForm().getHeight().getValue());
             
 //System.out.println(shape1);
 //System.out.println(shape2);
