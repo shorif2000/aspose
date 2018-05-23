@@ -5,6 +5,7 @@
  */
 package ccp;
 
+import com.aspose.diagram.AutoSpaceOptions;
 import com.aspose.diagram.Connection;
 import com.aspose.diagram.Txt;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,6 +19,9 @@ import com.aspose.diagram.ConnectionPointPlace;
 import com.aspose.diagram.ConnectorsTypeValue;
 import com.aspose.diagram.Diagram;
 import com.aspose.diagram.DiagramSaveOptions;
+import com.aspose.diagram.LayoutDirection;
+import com.aspose.diagram.LayoutOptions;
+import com.aspose.diagram.LayoutStyle;
 import com.aspose.diagram.Page;
 import com.aspose.diagram.PrintPageOrientationValue;
 import com.aspose.diagram.SaveFileFormat;
@@ -112,13 +116,12 @@ public class nitxtrace {
             shape1 = page.getShapes().getShape(shape_ID1);
             shape2 = page.getShapes().getShape(shape_ID2);
             // alter the size of Shape
-            shape1.setWidth(0.5 * shape1.getXForm().getWidth().getValue());
+            /*shape1.setWidth(0.5 * shape1.getXForm().getWidth().getValue());
             shape1.setHeight(0.5 * shape1.getXForm().getHeight().getValue());
             shape2.setWidth(0.5 * shape2.getXForm().getWidth().getValue());
             shape2.setHeight(0.5 * shape2.getXForm().getHeight().getValue());
+            */
             
-//System.out.println(shape1);
-//System.out.println(shape2);
             // add two more connection points
             connection1[i] = new Connection();
             connection1[i].setIX(0);
@@ -162,11 +165,25 @@ public class nitxtrace {
             }
             page.connectShapesViaConnector(shape1, ConnectionPointPlace.RIGHT, shape2, ConnectionPointPlace.LEFT, connector[i]);
 
+            shape1.bringForward();
+            shape1.bringToFront();
+            shape2.bringForward();
+            shape2.bringToFront();
+            
             y++;
             y++;
         }
         // page orientation
         page.getPageSheet().getPrintProps().getPrintPageOrientation().setValue(PrintPageOrientationValue.LANDSCAPE);
+        
+        // set layout options 
+        LayoutOptions flowChartOptions = new LayoutOptions();
+        flowChartOptions.setLayoutStyle(LayoutStyle.FLOW_CHART);
+        flowChartOptions.setSpaceShapes(1f);
+        flowChartOptions.setEnlargePage(true);
+        
+        flowChartOptions.setDirection(LayoutDirection.LEFT_TO_RIGHT);
+        diagram.layout(flowChartOptions);
         
         // save drawing
         DiagramSaveOptions options = new DiagramSaveOptions(SaveFileFormat.VSDX);        
