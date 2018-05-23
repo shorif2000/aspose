@@ -176,6 +176,7 @@ public class nitxtrace {
         // page orientation
         page.getPageSheet().getPrintProps().getPrintPageOrientation().setValue(PrintPageOrientationValue.LANDSCAPE);
         
+        
         // set layout options 
         LayoutOptions flowChartOptions = new LayoutOptions();
         flowChartOptions.setLayoutStyle(LayoutStyle.FLOW_CHART);
